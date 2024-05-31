@@ -92,7 +92,7 @@ class FloatingDraggableWidget extends StatefulWidget {
   final BoxDecoration? deleteWidgetDecoration;
 
   /// onDragging optionally accepts a function which is used to notify the user when the widget is dragging.
-  final Function(bool)? onDragging;
+  final Function(bool, double , double)? onDragging;
 
   /// widgetWhenDragging optionally accepts a widget which is used to show when the widget is dragging.
   final Widget? widgetWhenDragging;
@@ -186,7 +186,7 @@ class _FloatingDraggableWidgetState extends State<FloatingDraggableWidget>
 
         /// if the user touch of even gesture detector detect any drag gesture out side of the widget the dragging will be false
         onPanStart: (value) {
-          widget.onDragging?.call(true);
+          widget.onDragging?.call(true,getTop(),getLeft());
           setState(() {
             isTabbed = false;
           });
@@ -304,7 +304,7 @@ class _FloatingDraggableWidgetState extends State<FloatingDraggableWidget>
 
                         /// give a sliding animation
                         onPanEnd: (value) {
-                          widget.onDragging?.call(false);
+                          widget.onDragging?.call(false,getTop(),getLeft());
                           setState(() {
                             if (isTabbed && isDragEnable) {
                               isDragging = false;
@@ -408,5 +408,13 @@ class _FloatingDraggableWidgetState extends State<FloatingDraggableWidget>
     }
 
     return currentLeft;
+  }
+
+  double getTop(){
+    return this.top;
+  }
+
+  double getLeft(){
+    return this.left;
   }
 }

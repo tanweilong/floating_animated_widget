@@ -304,7 +304,6 @@ class _FloatingDraggableWidgetState extends State<FloatingDraggableWidget>
 
                         /// give a sliding animation
                         onPanEnd: (value) {
-                          widget.onDragging?.call(false,getTop(),getLeft());
                           setState(() {
                             if (isTabbed && isDragEnable) {
                               isDragging = false;
@@ -343,6 +342,8 @@ class _FloatingDraggableWidgetState extends State<FloatingDraggableWidget>
                               });
                             }
                           }
+
+                          widget.onDragging?.call(false,getTop(),getLeft());
                         },
 
                         /// the floating widget with size

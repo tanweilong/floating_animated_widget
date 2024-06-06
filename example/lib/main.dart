@@ -37,6 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingWidgetWidth: 90,
       dx: 200,
       dy: 300,
+      onDragging: (onDragging, top , left){
+        print("onDragging:${onDragging} top:${top} left:${left}");
+      },
       deleteWidgetDecoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Colors.white12, Colors.grey],
